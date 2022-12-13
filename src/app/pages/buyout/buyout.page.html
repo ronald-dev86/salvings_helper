@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Lista de compras</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" routerLink="../setting" routerDirection="forward">
+        <ion-icon name="options-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button [disabled]="itemForm.invalid" (click)="confirm()" [strong]="true">Guardar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="itemForm">
+          <ion-list>
+            <ion-list-header>
+              <ion-title size="large">Compra y/o Gasto</ion-title>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>Categoria</ion-label>
+              <ion-select interface="action-sheet" formControlName="_id_category" placeholder="Seccione una categoria">
+                <ion-select-option value="apples">Apples</ion-select-option>
+                <ion-select-option value="oranges">Oranges</ion-select-option>
+                <ion-select-option value="bananas">Bananas</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Descripción</ion-label>
+              <ion-input formControlName="description"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Monto</ion-label>
+              <ion-input slot="end" type="number" formControlName="amount"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Moneda</ion-label>
+              <ion-select interface="action-sheet" placeholder="Seleccione moneda" formControlName="badge">
+                <ion-select-option value="apples">USD</ion-select-option>
+                <ion-select-option value="oranges">COP</ion-select-option>
+                <ion-select-option value="bananas">VES</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Periodo</ion-label>
+              <ion-datetime presentation="month-year" max="2022-12" min="2022-01" formControlName="month">
+              </ion-datetime>
+            </ion-item>
+          </ion-list>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button id="open-modal">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

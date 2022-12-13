@@ -1,0 +1,6 @@
+{
+	"appId": "io.salvigshelper.com",
+	"appName": "salvings helper",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
